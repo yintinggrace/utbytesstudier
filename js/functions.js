@@ -211,18 +211,10 @@ function create_levels_filter() {
   create_filters(LEVELS, document.querySelector("#level_filter > ul"));
 }
 
-// Create Subjects Filter
-function create_subjects_filter () {
-  function create_subject (subject) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#subject_filter > ul"),
-      class: "selected",
-      textContent: subject.name,
-    });
-    dom.dataset.id = subject.id;
-  }
-  array_each(SUBJECTS, create_subject);
+function create_subjects_filter() {
+  create_filters(SUBJECTS, document.querySelector("#subject_filter > ul"));
 }
+
 // Create Search Field
 function create_language_filter () {
   function create_element (data) {
