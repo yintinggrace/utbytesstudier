@@ -21,9 +21,7 @@ function click_filter_element (event) {
 }
 
 
-// G
-// CODE according to specification
-function create_filter_element (data) {
+function create_filter_element(data) {
 
   /*
     ARGUMENTS
@@ -45,6 +43,13 @@ function create_filter_element (data) {
       Returns a reference to the new dom-element
   */
 
+  const new_dom_element = document.createElement("li");
+  new_dom_element.classList.add(data.class);
+  data.parent.appendChild(new_dom_element);
+  new_dom_element.textContent = data.textContent;
+  new_dom_element.addEventListener("click", click_filter_element);
+
+  return new_dom_element;
 }
 
 
