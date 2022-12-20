@@ -274,14 +274,39 @@ function update_programmes () {
 }
 
 
-// G
-// WRITE SPECIFICATION
-// You must understand how this function works. There will be questions about it
-// in the code review (kodredovisning)
+function read_filters() {
 
-// Optional VG: Which parts of the function's code could be abstracted?
-//              Implement it
-function read_filters () {
+  /*
+  ARGUMENTS
+    - Function read_filters receives no argument.
+
+  SIDE-EFFECTS
+    1. Form array "programmes"
+      1.1 Loop through all selected cities with class "selected" of #country_filter
+          - transform data id of all  selected elements from strings to numbers
+          - push all numbers into an array, "city_id_selected"
+      1.2 Compare objects of city_id_selected with the key values of UNIVERSITIES' cityID
+          - push the UNIVERSITIES' objects into array, "universities", if the above values are exactly the same
+      1.3 Loop through array, "universities"
+          - compare the key values of university's id with the key values of universityID of array "PROGRAMMES"
+          - push the PROGRAMMES' objects into array, "programmes", if the above values are exactly the same
+
+    2. Get the filtered programmes through level, language and subject respectively
+      2.1 Loop through all selected levels with class "selected" of #level_filter / #language_filter / #subject_filter
+          - transform data id of all selected elements from strings to numbers
+          - push all numbers into the array, "level_id_selected" / "language_id_selected" / "subject_id_selected"
+      2.2 Filter the array "programmes"
+          - return true if array, "level_id_selected" / "language_id_selected" / "subject_id_selected", includes the values of the key value of levelID / languageID /subjectID of array "programmes"
+          - objects are pushed into a new array "programmes" if return is true
+
+    3. Get the filtered programmes through input's values
+      - if the value of the input is not empty/nothing
+        - reutrn true if the key values of "name" from array "programmes" include the input values
+        - objects are pushed into a new array "programmes" if return is true
+
+  RETURN VALUE
+    Returns the value of array "programmes".
+*/
 
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
 
@@ -316,7 +341,6 @@ function read_filters () {
   array_each(universities, callback_add_programmes);
 
 
-
   const level_selected_dom = document.querySelectorAll("#level_filter li.selected");
   const level_id_selected = [];
   function callback_add_levelID (dom_element) {
@@ -331,7 +355,6 @@ function read_filters () {
   programmes = array_filter(programmes, test_function_level);
 
 
-
   const language_selected_dom = document.querySelectorAll("#language_filter li.selected");
   const language_id_selected = [];
   function callback_add_languageID (dom_element) {
@@ -340,13 +363,10 @@ function read_filters () {
   }
   array_each(language_selected_dom, callback_add_languageID);
 
-
-
   function test_function_language (programme) {
     return language_id_selected.includes(programme.languageID);
   }
   programmes = array_filter(programmes, test_function_language);
-
 
 
   const subject_selected_dom = document.querySelectorAll("#subject_filter li.selected");
@@ -357,13 +377,10 @@ function read_filters () {
   }
   array_each(subject_selected_dom, callback_add_subjectID);
 
-
-
   function test_function_subject (programme) {
     return subject_id_selected.includes(programme.subjectID);
   }
   programmes = array_filter(programmes, test_function_subject);
-
 
 
   const search_string = document.querySelector("#search_field input").value;
