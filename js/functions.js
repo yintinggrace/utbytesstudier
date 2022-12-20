@@ -253,9 +253,7 @@ function create_programme (programme) {
 }
 
 
-// G
-// CODE according to the specification
-function update_programmes () {
+function update_programmes() {
 
   /*
       NO ARGUMENTS
@@ -268,8 +266,9 @@ function update_programmes () {
         VG: The top images (header) need to be updated here
 
       NO RETURN VALUE
-
   */
+
+  const programmes = read_filters();
 
 }
 
