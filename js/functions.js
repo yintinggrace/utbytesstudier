@@ -270,6 +270,18 @@ function update_programmes() {
 
   const programmes = read_filters();
 
+  const no_programme_statement = document.querySelector("#programmes p");
+  const ul_container = document.querySelector("#programmes > ul");
+
+  ul_container.innerHTML = "";
+
+  if (programmes.length > 0) {
+    no_programme_statement.classList.add("hide_statement");
+    array_each(programmes, create_programme);
+    array_each(programmes, create_header_images);
+  } else {
+    no_programme_statement.classList.remove("hide_statement");
+  }
 }
 
 
