@@ -1,6 +1,4 @@
-// G
-// CODE According to specification
-function click_filter_element (event) {
+function click_filter_element(event) {
 
   /*
     ARGUMENTS
@@ -15,9 +13,10 @@ function click_filter_element (event) {
         Careful with the propagation of the click-event
 
     NO RETURN VALUE
-
   */
 
+  event.stopPropagation();
+  event.target.classList.toggle("selected");
 }
 
 
