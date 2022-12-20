@@ -53,6 +53,10 @@
   margin-top: auto;
 }
 
+.hide_statement {
+  display: none;
+}
+
 @media (min-width: 1300px) {
   #programmes ul {
     --nCols: 4;
