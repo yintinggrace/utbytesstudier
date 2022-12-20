@@ -207,17 +207,10 @@ function create_filters(ARRAY, parent) {
   array_each(ARRAY, create_filter);
 }
 
-function create_levels_filter () {
-  function create_level (level) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#level_filter > ul"),
-      class: "selected",
-      textContent: level.name,
-    });
-    dom.dataset.id = level.id;
-  }
-  array_each(LEVELS, create_level);
+function create_levels_filter() {
+  create_filters(LEVELS, document.querySelector("#level_filter > ul"));
 }
+
 // Create Subjects Filter
 function create_subjects_filter () {
   function create_subject (subject) {
