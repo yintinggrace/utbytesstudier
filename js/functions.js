@@ -174,11 +174,39 @@ function create_countries_cities_filters () {
   array_each(COUNTRIES, create_country);
 }
 
+function create_filters(ARRAY, parent) {
 
-// G
-// ABSTRACT AND WRITE SPECIFICATION
-//    As you can see, all three functions below do basically the same thing.
-//    Abstract them to one function, and write the specification of that function.
+  /*
+  ARGUMENTS
+    - Function create_filters receives two arguments representing an array and a parent with a reference to an HTML-element on the web page.
+    - Call other function create_filter inside create_filters.
+      - Function create_filter receives object from the called array.
+
+  SIDE-EFFECTS
+    - Creates a dom-element that calls a function create_filter_element.
+    - The dom will:
+      1. include a parent with the value of the called parent
+      2. include a class with a class name "selected"
+      3. include textContent with the value of the object's name from the called array
+    - Creates a dataset id for the dom based on the object's id
+
+  RETURN VALUE
+    No return value
+*/
+
+  function create_filter(object) {
+    const dom = create_filter_element({
+      parent: parent,
+      class: "selected",
+      textContent: object.name,
+    });
+
+    dom.dataset.id = object.id;
+  }
+
+  array_each(ARRAY, create_filter);
+}
+
 function create_levels_filter () {
   function create_level (level) {
     const dom = create_filter_element({
