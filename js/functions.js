@@ -91,11 +91,41 @@ function toggle_cities (event) {
 }
 
 
-// WRITE SPECIFICATION
-// ATTENTION: You need to write the specification of all three functions:
-//            create_countries_cities_filters, create_country and create_city
 function create_countries_cities_filters () {
+
+  /*
+  ARGUMENTS
+    Function receives no argument.
+
+  SIDE-EFFECTS
+    - Calls function create_country to loop through array COUNTRIES
+    - Calls function create_city to loop through array cities (i.e., filtered cities)
+
+  RETURN VALUE
+    No return value
+  */
+
   function create_country (country) {
+
+    /*
+      ARGUMENTS
+        Function receives an argument representing the objects of the array, COUNTRIES.
+
+      SIDE-EFFECTS
+        - Creates a dom-element with the "div" tag.
+        - Gives the dom-element the class names "country" and "filter_container" respectively.
+        - Gives the dom-element an id number according to the object's id. Name it "country_". E.g. country_0.
+        - Appends the dom-element to the "#country_filter > ul" element, which acts as a parent.
+        - Sets the text content of the dom-element to an h1 and an ul.
+          - Passes the object name as the content of h1.
+          - Gives a class name "filter_list" to ul.
+        - Filters the cities from array, CITIES, that contain the same countryID as the current object's id.
+        - Calls the function, create_city, to loop through the filtered cities.
+
+      RETURN VALUE
+        Returns the cities that contain the same countryID as the current object's id
+    */
+
     const dom = document.createElement("div");
     dom.classList.add("country");
     dom.classList.add("filter_container");
@@ -114,7 +144,24 @@ function create_countries_cities_filters () {
 
     array_each(cities, create_city);
   }
+
   function create_city (city) {
+
+    /*
+      ARGUMENTS
+        Function receives an argument representing the objects of array, cities.
+
+      SIDE-EFFECTS
+        Creates a dom-element that calls a function create_filter_element.
+        The dom will:
+          1. include a parent with a reference to an HTML-element on the web page
+          2. include a class with a class name "selected"
+          3. include textContent with the value from the argument
+        Creates a dataset id for the dom based on the object's id
+
+      RETURN VALUE
+        No return value
+    */
 
     const dom = create_filter_element({
       parent: document.querySelector(`#country_${city.countryID} > ul`),
@@ -122,7 +169,6 @@ function create_countries_cities_filters () {
       textContent: city.name,
     });
     dom.dataset.id = city.id;
-
   }
 
   array_each(COUNTRIES, create_country);
