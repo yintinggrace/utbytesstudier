@@ -74,13 +74,9 @@ function add_group_toggling (filter_container_dom) {
 
 }
 
-
-// VG
-// CODE according to specifications
-function toggle_cities (event) {
+function toggle_cities() {
 
   /*
-
     ARGUMENTS
       This function does not take any arguments
 
@@ -90,11 +86,22 @@ function toggle_cities (event) {
       If it is de-selected then it selects ALL city-filter-elements
 
     NO RETURN VALUE
-
   */
 
-}
+  const madrid_filter = document.querySelector("#country_filter li");
+  const all_filter = document.querySelectorAll("#country_filter li");
 
+  if (madrid_filter.classList.contains("selected")) {
+    for (let filter of all_filter) {
+      filter.classList.remove("selected");
+    }
+  } else {
+    for (let filter of all_filter) {
+      filter.classList.add("selected");
+    }
+  }
+
+}
 
 function create_countries_cities_filters () {
 
