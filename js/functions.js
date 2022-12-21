@@ -101,6 +101,7 @@ function toggle_cities() {
     }
   }
 
+  update_programmes();
 }
 
 function create_countries_cities_filters () {
