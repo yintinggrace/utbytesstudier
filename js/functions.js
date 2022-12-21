@@ -89,6 +89,7 @@ function add_group_toggling(filter_container_dom) {
         filter_list_item.classList.add("selected");
       }
     }
+    update_programmes();
   }
 
 }
