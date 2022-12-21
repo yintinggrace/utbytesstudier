@@ -9,10 +9,7 @@ document.querySelector("#search_field button").addEventListener("click", update_
 
 update_programmes();
 
-// VG
-// Add Interaction of filter containers (select-deselect all filters in the container)
-// Example: Click anywhere on the language-filter-container and all the language filters
-// (spanska, svenska, engelska, franska) will toggle.
+add_group_toggling_all();
 
 const button = document.querySelector("#country_filter button");
 button.addEventListener("click", toggle_cities);

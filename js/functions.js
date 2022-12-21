@@ -20,7 +20,6 @@ function click_filter_element(event) {
   update_programmes();
 }
 
-
 function create_filter_element(data) {
 
   /*
@@ -52,6 +51,12 @@ function create_filter_element(data) {
   return new_dom_element;
 }
 
+function add_group_toggling_all() {
+  const filter_containers = document.querySelectorAll(".filter_container");
+  for (let filter_container of filter_containers) {
+    add_group_toggling(filter_container);
+  }
+}
 
 // VG
 // CODE according to specification
