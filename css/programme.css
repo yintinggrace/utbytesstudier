@@ -84,6 +84,11 @@
   font-family: 'Roboto Condensed 700';
 }
 
+.show_more_button {
+  color: rgb(54, 53, 124);
+  cursor: pointer;
+}
+
 @media (min-width: 1300px) {
   #programmes ul {
     --nCols: 4;
