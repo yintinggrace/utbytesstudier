@@ -308,6 +308,18 @@ function create_programme(programme) {
   program_dom.style.backgroundSize = "cover";
   program_dom.style.borderRadius = "5px";
 
+  const show_more_buttons = document.querySelectorAll(".show_more_button");
+  for (let show_more_button of show_more_buttons) {
+    show_more_button.addEventListener("click", show_hidden_content);
+  }
+
+}
+
+function show_hidden_content(event) {
+  const hidden_lines = event.target.nextElementSibling;
+  console.log(event.target.nextElementSibling);
+  hidden_lines.classList.remove("hidden_content");
+  event.target.textContent = "";
 }
 
 function update_programmes() {
