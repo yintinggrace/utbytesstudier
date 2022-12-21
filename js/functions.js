@@ -224,13 +224,8 @@ function create_language_filter() {
   create_filters(LANGUAGES, document.querySelector("#language_filter > ul"));
 }
 
-
-// G / VG (see details in specification)
-// CODE according to specifications
-function create_programme (programme) {
-
+function create_programme(programme) {
   /*
-
     ARGUMENT
       programme (object): One of the objects from PROGRAMMES
 
@@ -242,16 +237,78 @@ function create_programme (programme) {
           in which the programme is (via the university)
       G:  No background image required.
 
-
       VG: The "see more" interaction must be included.
       G:  The "see more" element is not required. And that information needs not be in place.
 
     NO RETURN VALUE
-
   */
 
-}
+  const program_dom = document.createElement("li");
+  const container = document.querySelector("#programmes > ul");
+  container.appendChild(program_dom);
 
+  function find_uni(uni_object) {
+    return programme.universityID === uni_object.id;
+  }
+
+  function find_city(city_object) {
+    return uni.cityID === city_object.id;
+  }
+
+  function find_country(country_object) {
+    return city.countryID === country_object.id;
+  }
+
+  function find_level(level_object) {
+    return programme.levelID === level_object.id;
+  }
+
+  function find_subject(subject_object) {
+    return programme.subjectID === subject_object.id;
+  }
+
+  function find_language(language_object) {
+    return programme.languageID === language_object.id;
+  }
+
+  const uni = array_find(UNIVERSITIES, find_uni);
+  const city = array_find(CITIES, find_city);
+  const country = array_find(COUNTRIES, find_country);
+  const level = array_find(LEVELS, find_level);
+  const subject = array_find(SUBJECTS, find_subject);
+  const language = array_find(LANGUAGES, find_language);
+  const average_entry_grade = array_average(programme.entryGrades);
+  const average_success_rate = array_average(programme.successRate);
+  const percentage = percenter(city.sun, 365);
+  const random_number = array_random_element(city.imagesNormal);
+
+  program_dom.innerHTML = `
+  <div class="top">
+    <div class="programme_basic">
+      <div class="programme_name">${programme.name}</div>
+      <div>${uni.name}</div>
+      <div>${city.name}, ${country.name}</div>
+      <div>${level.name}, ${subject.name}, ${language.name}</div>
+    </div>
+    <div class="box">
+      <div class="show_more_button">show more</div>
+      <div class="hidden_content remained_content">
+        <div class="show_less_button">show less</div>
+        <div>Average entry grade: ${average_entry_grade}</div>
+        <div>Success rate: ${average_success_rate}%</div>
+        <div>Exchange ratio: ${programme.exchangeStudents}/${programme.localStudents}</div>
+      </div>
+    </div>
+  </div>
+  <div class="sun_index">${city.name}, sun-index: ${city.sun} (${percentage}%)</div>
+  `;
+
+  program_dom.style.backgroundImage = `url("./media/geo_images/${random_number}")`;
+  program_dom.style.backgroundPosition = "center";
+  program_dom.style.backgroundSize = "cover";
+  program_dom.style.borderRadius = "5px";
+
+}
 
 function update_programmes() {
 
@@ -278,7 +335,7 @@ function update_programmes() {
   if (programmes.length > 0) {
     no_programme_statement.classList.add("hide_statement");
     array_each(programmes, create_programme);
-    array_each(programmes, create_header_images);
+    // array_each(programmes, create_header_images);
   } else {
     no_programme_statement.classList.remove("hide_statement");
   }
