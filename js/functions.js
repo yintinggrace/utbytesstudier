@@ -58,24 +58,38 @@ function add_group_toggling_all() {
   }
 }
 
-// VG
-// CODE according to specification
-function add_group_toggling (filter_container_dom) {
+function add_group_toggling(filter_container_dom) {
 
   /*
     ARGUMENT
-      filter_container_dom: reference to a HTML-element that contains a set of fliter_elements
-            Exempel: the <ul> that contains the filters for Language.
+    filter_container_dom: reference to a HTML-element that contains a set of fliter_elements
+    Exempel: the <ul> that contains the filters for Language.
 
     SIDE EFFECTS
-      The function makes sure that when the user clicks on filter_container_dom, all the
-      filter_elements that it contains are selected / unselected.
-      Since some filter elements will have changed after the click, the list of
-      programmes must be updated.
+    The function makes sure that when the user clicks on filter_container_dom, all the filter_elements that it contains are selected / unselected.
+    Since some filter elements will have changed after the click, the list of
+    programmes must be updated.
 
     NO RETURN VALUE
-
   */
+
+  filter_container_dom.addEventListener("click", toggle_group_filter);
+
+  function toggle_group_filter(event) {
+
+    const first_filter_list_items = event.currentTarget.querySelector("li");
+    const filter_list_items = event.currentTarget.querySelectorAll("li");
+
+    if (first_filter_list_items.classList.contains("selected")) {
+      for (let filter_list_item of filter_list_items) {
+        filter_list_item.classList.remove("selected");
+      }
+    } else {
+      for (let filter_list_item of filter_list_items) {
+        filter_list_item.classList.add("selected");
+      }
+    }
+  }
 
 }
 
