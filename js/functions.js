@@ -313,6 +313,10 @@ function create_programme(programme) {
     show_more_button.addEventListener("click", show_hidden_content);
   }
 
+  const show_less_buttons = document.querySelectorAll(".show_less_button");
+  for (let show_less_button of show_less_buttons) {
+    show_less_button.addEventListener("click", hide_shown_content);
+  }
 }
 
 function show_hidden_content(event) {
@@ -320,6 +324,11 @@ function show_hidden_content(event) {
   console.log(event.target.nextElementSibling);
   hidden_lines.classList.remove("hidden_content");
   event.target.textContent = "";
+}
+
+function hide_shown_content(event) {
+  event.target.parentNode.classList.add("hidden_content");
+  event.target.parentNode.previousElementSibling.textContent = "show more";
 }
 
 function update_programmes() {
