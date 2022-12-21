@@ -356,12 +356,42 @@ function update_programmes() {
   if (programmes.length > 0) {
     no_programme_statement.classList.add("hide_statement");
     array_each(programmes, create_programme);
-    // array_each(programmes, create_header_images);
+    array_each(programmes, create_header_images);
   } else {
     no_programme_statement.classList.remove("hide_statement");
   }
 }
 
+function create_header_images(programme) {
+
+  function find_uni(uni_object) {
+    return programme.universityID === uni_object.id;
+  }
+
+  function find_city(city_object) {
+    return uni.cityID === city_object.id;
+  }
+
+  function find_country(country_object) {
+    return city.countryID === country_object.id;
+  }
+
+  const uni = array_find(UNIVERSITIES, find_uni);
+  const city = array_find(CITIES, find_city);
+  const country = array_find(COUNTRIES, find_country);
+
+  const random_number1 = array_random_element(country.imagesNormal);
+  const random_number2 = array_random_element(country.imagesNormal);
+  const random_number3 = array_random_element(country.imagesNormal);
+
+  const div_dom1 = document.querySelector("#top_images > div:nth-child(1)");
+  const div_dom2 = document.querySelector("#top_images > div:nth-child(2)");
+  const div_dom3 = document.querySelector("#top_images > div:nth-child(3)");
+
+  div_dom1.style.backgroundImage = `url('./media/geo_images/${random_number1}')`;
+  div_dom2.style.backgroundImage = `url('./media/geo_images/${random_number2}')`;
+  div_dom3.style.backgroundImage = `url('./media/geo_images/${random_number3}')`;
+}
 
 function read_filters() {
 
