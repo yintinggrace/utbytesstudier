@@ -386,27 +386,29 @@ function update_programmes() {
   }
 }
 
-function create_header_images(programme) {
-
-  function find_uni(uni_object) {
-    return programme.universityID === uni_object.id;
+function create_header_images(programmes) {
+  let all_programmes_countries = [];
+  for (let i = 0; i < programmes.length; i++) {
+    const country_name = get_country(programmes[i]);
+    if (!all_programmes_countries.includes(country_name)) {
+      all_programmes_countries.push(country_name);
+    }
   }
 
-  function find_city(city_object) {
-    return uni.cityID === city_object.id;
+  let images = [];
+  for (let i = 0; i < all_programmes_countries.length; i++) {
+    for (let j = 0; j < COUNTRIES.length; j++) {
+      if (all_programmes_countries[i] === COUNTRIES[j].name) {
+        for (let k = 0; k < COUNTRIES[j].imagesNormal.length; k++) {
+          images.push(COUNTRIES[j].imagesNormal[k]);
+        }
+      }
+    }
   }
 
-  function find_country(country_object) {
-    return city.countryID === country_object.id;
-  }
-
-  const uni = array_find(UNIVERSITIES, find_uni);
-  const city = array_find(CITIES, find_city);
-  const country = array_find(COUNTRIES, find_country);
-
-  const random_number1 = array_random_element(country.imagesNormal);
-  const random_number2 = array_random_element(country.imagesNormal);
-  const random_number3 = array_random_element(country.imagesNormal);
+  const random_number1 = array_random_element(images);
+  const random_number2 = array_random_element(images);
+  const random_number3 = array_random_element(images);
 
   const div_dom1 = document.querySelector("#top_images > div:nth-child(1)");
   const div_dom2 = document.querySelector("#top_images > div:nth-child(2)");
