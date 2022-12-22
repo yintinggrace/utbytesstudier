@@ -336,15 +336,11 @@ function create_programme(programme) {
   program_dom.style.backgroundSize = "cover";
   program_dom.style.borderRadius = "5px";
 
-  const show_more_buttons = document.querySelectorAll(".show_more_button");
-  for (let show_more_button of show_more_buttons) {
-    show_more_button.addEventListener("click", show_hidden_content);
-  }
+  const show_more_button = program_dom.querySelector(".show_more_button");
+  show_more_button.addEventListener("click", show_hidden_content);
 
-  const show_less_buttons = document.querySelectorAll(".show_less_button");
-  for (let show_less_button of show_less_buttons) {
-    show_less_button.addEventListener("click", hide_shown_content);
-  }
+  const show_less_button = program_dom.querySelector(".show_less_button");
+  show_less_button.addEventListener("click", hide_shown_content);
 }
 
 function show_hidden_content(event) {
