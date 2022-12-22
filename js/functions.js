@@ -308,7 +308,7 @@ function create_programme(programme) {
   const average_entry_grade = array_average(programme.entryGrades);
   const average_success_rate = array_average(programme.successRate);
   const percentage = percenter(city.sun, 365);
-  const random_number = array_random_element(city.imagesNormal);
+  const random_image = array_random_element(city.imagesNormal);
 
   program_dom.innerHTML = `
   <div class="top">
@@ -331,7 +331,7 @@ function create_programme(programme) {
   <div class="sun_index">${city.name}, sun-index: ${city.sun} (${percentage}%)</div>
   `;
 
-  program_dom.style.backgroundImage = `url("./media/geo_images/${random_number}")`;
+  program_dom.style.backgroundImage = `url("./media/geo_images/${random_image}")`;
   program_dom.style.backgroundPosition = "center";
   program_dom.style.backgroundSize = "cover";
   program_dom.style.borderRadius = "5px";
