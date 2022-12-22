@@ -386,6 +386,28 @@ function update_programmes() {
   }
 }
 
+function get_country(programme) {
+
+  function find_uni(uni_object) {
+    return programme.universityID === uni_object.id;
+  }
+
+  function find_city(city_object) {
+    return uni.cityID === city_object.id;
+  }
+
+  function find_country(country_object) {
+    return city.countryID === country_object.id;
+  }
+
+  const uni = array_find(UNIVERSITIES, find_uni);
+  const city = array_find(CITIES, find_city);
+  const country = array_find(COUNTRIES, find_country);
+
+  const country_name = country.name;
+  return country_name;
+}
+
 function create_header_images(programmes) {
   let all_programmes_countries = [];
   for (let i = 0; i < programmes.length; i++) {
